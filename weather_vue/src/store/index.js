@@ -1,16 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { weatherCity } from '../api/index'
+import { weatherCity, weatherIcon } from '../api/index'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({ //const로 선언하는 것과 차이....?
   state: {
-    weatherData: []
+    weatherData: [],
   },
   mutations: {
     SET_CITY(state, city) {
       state.weatherData = city
+    },
+    SET_ICON(state, icon) {
+      state.iconData = icon
     }
   },
   actions: {
@@ -23,7 +26,7 @@ export default new Vuex.Store({ //const로 선언하는 것과 차이....?
       .catch(err => {
         console.log(err)   
       })
-    }
+    },
   },
   modules: {
   }
