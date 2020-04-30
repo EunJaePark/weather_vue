@@ -45,6 +45,7 @@ export default {
     }
   },
   computed: {
+    // 각 데이터 선언.
     city () {
       return this.$store.state.weatherData
     },
@@ -60,6 +61,8 @@ export default {
     wind() {
       return this.$store.state.weatherData.wind
     },
+
+    // 기온: 섭씨로 수정 + 소수점 반올림.
     temp() {
       return Math.round(this.tempInfo.temp - this.minus)  // 소수점 반올림.
     },
@@ -69,6 +72,8 @@ export default {
     minTemp() {
       return Math.round(this.tempInfo.temp_min - this.minus)
     },
+
+    //일출,일몰시간: 유닉스 시간을 표준시간으로 변경.
     sunriseTime() {
       // unix시간 변환.
       const sunrise = this.sun.sunrise
@@ -85,6 +90,8 @@ export default {
       const sunsetTimestr = sunsettime.toLocaleTimeString(sunsettime)
       return sunsetTimestr;
     },
+
+    // 풍향: 방위 각도를 한글로 수정.
     windDeg() {
       let cardinalPoints = null
       if(0 <= this.wind.deg < 11.25 || 348.75 <= this.wind.deg < 360) { cardinalPoints = '북' }
