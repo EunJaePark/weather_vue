@@ -25,10 +25,7 @@ export default {
       
       eventbus.inputName(this.cityInput, true)
 
-      // eventbus.getSignal(true)
-      // this.$emit('cityname', this.cityInput)
-
-      // // local storage에 입력한 도시이름 저장하는 함수 실행.
+      // local storage에 입력한 도시이름 저장하는 함수 실행.
       this.saveName(this.cityInput)
 
       this.cityInput = null
