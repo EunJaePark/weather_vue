@@ -1,7 +1,8 @@
 <template>
   <div 
     class="city"
-  >
+    
+  ><!-- @cityname = "newCity" -->
     {{ city }}
   </div>
 </template>
@@ -20,36 +21,45 @@ export default {
       return this.$store.state.weatherData
     }
   },
-  created() {
+  created() {   
+    eventbus.$on('sendCityName', (cityInput, signal) => {
+      console.log(cityInput)
+      console.log(signal);
 
-    // eventbus.$on('sendCityName', (cityInput) => {
-    //     console.log(cityInput)
-        
-    //     this.cityname = cityInput
-        
-    // })
+      if(signal === true) {
+        this.newCity(cityInput)
+      }
+      
+      // cityname = cityInput
+
+      // this.cityname = cityInput
+      // console.log(this.cityname);       
+    })
+
     // eventbus.$on('sendSignal', signal => {
     //   console.log(signal);
-        
-    // })
 
-    // this.$store.dispatch('FETCH_WEATHER', this.cityname);
-    
+    //   //SearchCity.vue에서 받아온 signal신호가 true이면 newCity함수실행.(input에 나라이름 입력하고 엔터눌렀을 때 true신호도 함께 전송됨.)
+    //   if(signal === true) {
+    //     this.newCity()
+    //     console.log(cityname);
+        
+    //   }
+    // }) 
+     
   },
   methods: {
-    newCity() {
-      eventbus.$on('sendCityName', (cityInput) => {
-        console.log(cityInput)
+    newCity(cityInput) {
+      console.log('city name 받았어!!!!!!!!!');
+      
+      // eventbus.$on('sendCityName', (cityInput) => {
+      //   console.log(cityInput)
         
-        this.cityname = cityInput
-        
-      })
-      eventbus.$on('sendSignal', signal => {
-        console.log(signal);
-        
-      })
+      //   // this.cityname = cityInput
+      //   console.log(this.cityname);       
+      // })
 
-      this.$store.dispatch('FETCH_WEATHER', this.cityname);
+      this.$store.dispatch('FETCH_WEATHER', cityInput);
       }
     }
 

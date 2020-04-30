@@ -9,11 +9,11 @@ Vue.config.productionTip = false
 export const eventbus = new Vue({
   methods: {
     inputName(cityInput, signal) {
-      this.$emit('sendCityName', cityInput)
+      this.$emit('sendCityName', cityInput, signal)
     },
-    getSignal(signal) {
-      this.$emit('sendSignal', signal)
-    }
+    // getSignal(signal) {
+    //   this.$emit('sendSignal', signal)
+    // }
   }
 })
 
