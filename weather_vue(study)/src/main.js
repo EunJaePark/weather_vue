@@ -17,6 +17,11 @@ export const eventbus = new Vue({
     // getSignal(signal) {
     //   this.$emit('sendSignal', signal)
     // }
+
+    
+    // sunTime(sunrise, sunset) {
+    //   this.$emit('suntime', sunrise, sunset)
+    // }
   }
 })
 

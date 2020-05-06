@@ -1,13 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { weatherCity,  weather5days } from '../api/index'
+import { weatherCity,  weather5days, weatherDays } from '../api/index'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({ //const로 선언하는 것과 차이....?
   state: {
     weatherData: [],
-    weather5daysData: []
+    weather5daysData: [],
+    // weatherDaysData: [],
+    // weatherLat:[],
+    // weatherLon:[]
   },
   mutations: {
     SET_CITY(state, city) {
@@ -15,6 +18,10 @@ export default new Vuex.Store({ //const로 선언하는 것과 차이....?
     },
     SET_5DAYS(state, city) {
       state.weather5daysData = city
+    },
+    SET_DAYS(state,  lat, lon) {
+      state.weatherLat = lat
+      state.weatherLon = lon
     }
   },
   actions: {
@@ -38,7 +45,20 @@ export default new Vuex.Store({ //const로 선언하는 것과 차이....?
         console.log(err);
         
       })
-    }
+    },
+    FETCH_DAYS(context, lat, lon) {
+      console.log(lat, lon);
+      
+      return weatherDays( lat, lon)
+      .then(res => {
+        context.commit('SET_DAYS', res.data)
+        return res
+      })
+      .catch(err => {
+        console.log(err);
+        
+      })
+    },
   },
   modules: {
   }

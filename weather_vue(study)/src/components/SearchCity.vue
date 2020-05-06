@@ -1,5 +1,5 @@
 <template>
-  <div>Search City
+  <div>Search City(7일치날씨만)
     <form @submit.prevent="cityName">
       <input
         type="text"
